@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>To-Do List</h1>
+    <div class="task-input">
+      <input type="text" id="new-task" placeholder="Enter a new task" />
+      <button onclick="addTask()">Add Task</button>
+    </div>
+    <ul id="task-list">
+      <!-- Task items will appear here -->
+    </ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.task-input {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 70%;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4cae4c;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li.completed {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.task-buttons {
+  display: flex;
+}
+
+.task-buttons button {
+  margin-left: 10px;
+  padding: 5px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.task-buttons button.complete {
+  background-color: #5bc0de;
+}
+
+.task-buttons button.edit {
+  background-color: #f0ad4e;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+const taskList = document.getElementById('task-list');
+let tasks = [];
+
+// Add a new task
+function addTask() {
+  const newTaskInput = document.getElementById('new-task');
+  const taskText = newTaskInput.value.trim();
+
+  if (taskText) {
+    const task = {
+      id: Date.now(),
+      title: taskText,
+      completed: false,
+    };
+    tasks.push(task);
+    renderTasks();
+    newTaskInput.value = '';
+  }
+}
+
+// Render tasks to the DOM
+function renderTasks() {
+  taskList.innerHTML = '';
+
+  tasks.forEach((task) => {
+    const li = document.createElement('li');
+    li.className = task.completed ? 'completed' : '';
+    li.innerHTML = `
+      <span>${task.title}</span>
+      <div class="task-buttons">
+        <button class="complete" onclick="toggleComplete(${task.id})">${task.completed ? 'Undo' : 'Complete'}</button>
+        <button class="edit" onclick="editTask(${task.id})">Edit</button>
+        <button onclick="deleteTask(${task.id})">Delete</button>
+      </div>
+    `;
+    taskList.appendChild(li);
+  });
+}
+
+// Toggle task completion
+function toggleComplete(taskId) {
+  tasks = tasks.map(task => task.id === taskId ? { ...task, completed: !task.completed } : task);
+  renderTasks();
+}
+
+// Edit task
+function editTask(taskId) {
+  const task = tasks.find(task => task.id === taskId);
+  const newTaskTitle = prompt('Edit task', task.title);
+
+  if (newTaskTitle) {
+    task.title = newTaskTitle;
+    renderTasks();
+  }
+}
+
+// Delete task
+function deleteTask(taskId) {
+  tasks = tasks.filter(task => task.id !== taskId);
+  renderTasks();
+}
