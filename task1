@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Coaching - Get in Shape</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <h1>FitnessPro</h1>
+        </div>
+        <nav class="nav">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Banner Section -->
+    <section class="banner">
+        <div class="banner-content">
+            <h2>Get Fit with Professional Coaching</h2>
+            <p>Start your journey towards a healthier, stronger body with personalized fitness programs.</p>
+            <button class="cta-button">Join Now</button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p>FitnessPro is dedicated to helping you achieve your fitness goals with custom training plans and expert guidance.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="service-item">
+            <h3>Personal Training</h3>
+            <p>One-on-one coaching to help you get stronger, leaner, and more confident.</p>
+        </div>
+        <div class="service-item">
+            <h3>Group Classes</h3>
+            <p>Join group fitness sessions designed to push you to your limits and have fun!</p>
+        </div>
+        <div class="service-item">
+            <h3>Nutrition Plans</h3>
+            <p>Tailored meal plans to complement your workout routines and goals.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit" class="submit-button">Send</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 FitnessPro. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
